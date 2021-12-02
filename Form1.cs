@@ -18,6 +18,9 @@ namespace NewFilms
         MultiDictionary rules = new MultiDictionary();
         List<Button> tableButtons = new List<Button>();
         SortedSet<int> fromFacts = new SortedSet<int>();
+        string clips_text = "";
+        List<string> loaded_templates = new List<string>();
+        int count_loaded = 0;
         int tofact = -1;
 
         private CLIPSNET.Environment clips = new CLIPSNET.Environment();
@@ -233,8 +236,13 @@ namespace NewFilms
 
         private void load_clipse_button_Click(object sender, EventArgs e)
         {
-            if (MethodsCLIPS.LoadClipse(clips))
+            var ofd = new OpenFileDialog();
+            ofd.InitialDirectory = Environment.CurrentDirectory;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                clips_text = MethodsCLIPS.LoadClipse(clips, clips_text, ofd.FileName,loaded_templates);
                 run_clipse_button.Enabled = true;
+            }
         }
 
         private void run_clipse_button_Click(object sender, EventArgs e)

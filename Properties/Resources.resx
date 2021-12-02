@@ -229,8 +229,7 @@
 ) 
 
 (deftemplate composer
-(slot data
-)
-</value>
+(slot data)
+)</value>
   </data>
 </root>

@@ -11,15 +11,58 @@ namespace NewFilms
 {
     public static class MethodsCLIPS
     {
-        public static bool LoadClipse(CLIPSNET.Environment clips)
+        public static string LoadClipse(CLIPSNET.Environment clips,string clips_text, string filename, List<string> loaded_templates)
         {
             clips.Clear();
-            if (!File.Exists("genearted_clips.clp"))
-                return false;
-            var s = File.ReadAllText("genearted_clips.clp", Encoding.UTF8);
+            var loaded = RefactorInput(filename, loaded_templates);
+            var s = clips_text + "\n"+loaded;
             clips.LoadFromString(s);
             clips.Reset();
-            return true;
+            return s;
+        }
+
+        private static string RefactorInput(string filename, List<string> loaded_templates)
+        {
+            
+            var lines = File.ReadAllLines(filename, Encoding.UTF8);
+            var text = "";
+            if (loaded_templates.Count == 0)
+            {
+                foreach (var line in lines)
+                {
+                    var words = line.Split(new char[] { '(', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (words.Length > 1 && words[0] == "deftemplate" && !loaded_templates.Contains(words[1]))
+                        loaded_templates.Add(words[1]);
+                }
+                return File.ReadAllText(filename, Encoding.UTF8);
+            }
+            var rules_to_rename = new List<string>();
+            var skip_template = false;
+            foreach(var line in lines)
+            {
+                var words = line.Split(new char[] { '(', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (line.Length>0 && line[0] == ')' && skip_template)
+                {
+                    skip_template = false;
+                    continue;
+                }
+                if (skip_template)
+                    continue;
+                if (words.Length>1 && (words[0] == "defrule" || words[0] == "deffacts"))
+                    rules_to_rename.Add(words[1]);
+                if (words.Length > 1 && words[0] == "deftemplate" && loaded_templates.Contains(words[1]))
+                {
+                    skip_template = true;
+                    continue;
+                }
+                if (words.Length > 1 && words[0] == "deftemplate" && !loaded_templates.Contains(words[1]))
+                    loaded_templates.Add(words[1]);
+                text += line + "\n";
+            }
+            rules_to_rename.Sort((x, y) => x.Length < y.Length ? 1 : -1);
+            foreach (var rf in rules_to_rename)
+                text = text.Replace(rf, rf + filename);
+            return text;
         }
 
         public static void RunClipse(CLIPSNET.Environment clips, SortedSet<int> fromFacts, Dictionary<int,string> facts, TextBox tb)
@@ -137,7 +180,7 @@ namespace NewFilms
                 var s = ParseFact(fact.Value);
                 CLIPS_facts[fact.Key] = s;
             }
-            sb.Append(")\n\n");
+            sb.Append("\n\n");
 
             int rule_number = 0;
             foreach (var key in rules.data.Keys)
