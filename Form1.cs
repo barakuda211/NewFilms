@@ -17,6 +17,7 @@ namespace NewFilms
         Dictionary<int, string> facts = new Dictionary<int, string>();
         MultiDictionary rules = new MultiDictionary();
         List<Button> tableButtons = new List<Button>();
+        List<TextBox> tableCoefs = new List<TextBox>();
         SortedSet<int> fromFacts = new SortedSet<int>();
         string clips_text = "";
         List<string> loaded_templates = new List<string>();
@@ -59,7 +60,7 @@ namespace NewFilms
             }
         }
 
-        private void RedrawTable()
+        private void RedrawTables()
         {
             int i = 0;
             table.Controls.Clear();
@@ -67,6 +68,15 @@ namespace NewFilms
             {
                 b.Tag = i;
                 table.Controls.Add(b, i, 0);
+                i++;
+            }
+
+            i = 0;
+            table_coef.Controls.Clear();
+            foreach (var b in tableCoefs)
+            {
+                b.Tag = i;
+                table_coef.Controls.Add(b, i, 0);
                 i++;
             }
         }
@@ -78,7 +88,8 @@ namespace NewFilms
             //удаляем из множества рассматриваемых фактов
             fromFacts.Remove(facts.First(pair => pair.Value == b.Text).Key);
             tableButtons.RemoveAt(index);
-            RedrawTable();
+            tableCoefs.RemoveAt(index);
+            RedrawTables();
         }
 
         private void fromComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,7 +103,14 @@ namespace NewFilms
             b.Tag = tableButtons.Count;
             b.Click += tableButton_Click;
             tableButtons.Add(b);
-            RedrawTable();
+            RedrawTables();
+
+            var tb = new TextBox();
+            tb.Text = "1,0";
+            tb.Parent = table_coef;
+            tb.Tag = tableCoefs.Count;
+            tableCoefs.Add(tb);
+            RedrawTables();
 
             //добавляем в множество рассматриваемых фактов
             fromFacts.Add(facts.First(pair => pair.Value == b.Text).Key);
@@ -242,12 +260,29 @@ namespace NewFilms
             {
                 clips_text = MethodsCLIPS.LoadClipse(clips, clips_text, ofd.FileName,loaded_templates);
                 run_clipse_button.Enabled = true;
+                run_clips_coef_button.Enabled = true;
             }
         }
 
         private void run_clipse_button_Click(object sender, EventArgs e)
         {
             MethodsCLIPS.RunClipse(clips, fromFacts, facts, outputTextBox);
+        }
+
+        private void generate_clips_coef_button_Click(object sender, EventArgs e)
+        {
+            MethodsCLIPS.MakeCLIPSCoefFile(facts, rules);
+        }
+
+        private void run_clips_coef_button_Click(object sender, EventArgs e)
+        {
+            var fc = new List<string>();
+            var coefs = new List<double>();
+            foreach (var tb in tableButtons)
+                fc.Add(tb.Text);
+            foreach (var tb in tableCoefs)
+                coefs.Add(double.Parse(tb.Text));
+            MethodsCLIPS.RunClipseCoef(clips, fc, coefs, facts, outputTextBox);
         }
     }
 

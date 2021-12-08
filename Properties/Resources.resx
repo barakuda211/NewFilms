@@ -117,6 +117,132 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CLIPS_coef_init" xml:space="preserve">
+    <value>(deftemplate ioproxy
+    (slot fact-id)
+    (multislot answers)
+    (multislot messages)
+    (slot reaction)
+    (slot value)
+    (slot restore)
+)
+
+
+(deffacts proxy-fact
+    (ioproxy
+        (fact-id 0112)
+        (value none)
+        (messages)
+    )
+)
+
+
+(defrule clear-messages
+    (declare (salience 90))
+    ?clear-msg-flg &lt;- (clearmessage)
+    ?proxy &lt;- (ioproxy)
+    =&gt;
+    (modify ?proxy (messages))
+    (retract ?clear-msg-flg)
+)
+
+
+(defrule set-output-and-halt
+    (declare (salience 99))
+    ?current-message &lt;- (sendmessagehalt ?new-msg)
+    ?proxy &lt;- (ioproxy (messages $?msg-list))
+    =&gt;
+    (modify ?proxy (messages ?new-msg))
+    (retract ?current-message)
+    (halt)
+)
+
+
+(defrule append-output-and-halt
+    (declare (salience 99))
+    ?current-message &lt;- (appendmessagehalt $?new-msg)
+    ?proxy &lt;- (ioproxy (messages $?msg-list))
+    =&gt;
+    (modify ?proxy (messages $?msg-list $?new-msg))
+    (retract ?current-message)
+    (halt)
+)
+
+
+(defrule set-output-and-proceed
+    (declare (salience 99))
+    ?current-message &lt;- (sendmessage ?new-msg)
+    ?proxy &lt;- (ioproxy)
+    =&gt;
+    (modify ?proxy (messages ?new-msg))
+    (retract ?current-message)
+)
+
+
+(defrule append-output-and-proceed
+    (declare (salience 99))
+    ?current-message &lt;- (appendmessage ?new-msg)
+    ?proxy &lt;- (ioproxy (messages $?msg-list))
+    =&gt;
+    (modify ?proxy (messages $?msg-list ?new-msg))
+    (retract ?current-message)
+)
+
+(deftemplate film
+(slot data)
+(slot weight)
+) 
+
+(deftemplate time_space
+(slot data)
+(slot weight)
+) 
+
+(deftemplate director
+(slot data)
+(slot weight)
+) 
+
+(deftemplate genre
+(slot data)
+(slot weight)
+) 
+
+(deftemplate rating
+(slot data)
+(slot weight)
+) 
+
+(deftemplate gender
+(slot data)
+(slot weight)
+) 
+
+(deftemplate oscar
+(slot data)
+(slot weight)
+) 
+
+(deftemplate oscar
+(slot data)
+(slot weight)
+) 
+
+(deftemplate age
+(slot data)
+(slot weight)
+) 
+
+(deftemplate mood
+(slot data)
+(slot weight)
+) 
+
+(deftemplate composer
+(slot data)
+(slot weight)
+)</value>
+  </data>
   <data name="CLIPS_init" xml:space="preserve">
     <value>(deftemplate ioproxy
     (slot fact-id)

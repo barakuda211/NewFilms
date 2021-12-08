@@ -41,6 +41,9 @@ namespace NewFilms
             this.generate_clips_button = new System.Windows.Forms.Button();
             this.load_clipse_button = new System.Windows.Forms.Button();
             this.run_clipse_button = new System.Windows.Forms.Button();
+            this.table_coef = new System.Windows.Forms.TableLayoutPanel();
+            this.generate_clips_coef_button = new System.Windows.Forms.Button();
+            this.run_clips_coef_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // fromComboBox
@@ -77,8 +80,8 @@ namespace NewFilms
             this.table.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.table.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.table.ColumnCount = 1;
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 254F));
-            this.table.Location = new System.Drawing.Point(4, 59);
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 201F));
+            this.table.Location = new System.Drawing.Point(6, 59);
             this.table.Name = "table";
             this.table.RowCount = 10;
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -91,7 +94,7 @@ namespace NewFilms
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.table.Size = new System.Drawing.Size(256, 321);
+            this.table.Size = new System.Drawing.Size(203, 321);
             this.table.TabIndex = 3;
             // 
             // label1
@@ -143,7 +146,7 @@ namespace NewFilms
             // 
             // generate_clips_button
             // 
-            this.generate_clips_button.Location = new System.Drawing.Point(266, 295);
+            this.generate_clips_button.Location = new System.Drawing.Point(261, 176);
             this.generate_clips_button.Name = "generate_clips_button";
             this.generate_clips_button.Size = new System.Drawing.Size(203, 24);
             this.generate_clips_button.TabIndex = 9;
@@ -153,7 +156,7 @@ namespace NewFilms
             // 
             // load_clipse_button
             // 
-            this.load_clipse_button.Location = new System.Drawing.Point(266, 323);
+            this.load_clipse_button.Location = new System.Drawing.Point(261, 277);
             this.load_clipse_button.Name = "load_clipse_button";
             this.load_clipse_button.Size = new System.Drawing.Size(203, 24);
             this.load_clipse_button.TabIndex = 10;
@@ -164,7 +167,7 @@ namespace NewFilms
             // run_clipse_button
             // 
             this.run_clipse_button.Enabled = false;
-            this.run_clipse_button.Location = new System.Drawing.Point(266, 353);
+            this.run_clipse_button.Location = new System.Drawing.Point(261, 317);
             this.run_clipse_button.Name = "run_clipse_button";
             this.run_clipse_button.Size = new System.Drawing.Size(203, 24);
             this.run_clipse_button.TabIndex = 11;
@@ -172,11 +175,58 @@ namespace NewFilms
             this.run_clipse_button.UseVisualStyleBackColor = true;
             this.run_clipse_button.Click += new System.EventHandler(this.run_clipse_button_Click);
             // 
+            // table_coef
+            // 
+            this.table_coef.AutoSize = true;
+            this.table_coef.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.table_coef.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.table_coef.ColumnCount = 1;
+            this.table_coef.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.table_coef.Location = new System.Drawing.Point(214, 59);
+            this.table_coef.Name = "table_coef";
+            this.table_coef.RowCount = 10;
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.table_coef.Size = new System.Drawing.Size(41, 321);
+            this.table_coef.TabIndex = 12;
+            // 
+            // generate_clips_coef_button
+            // 
+            this.generate_clips_coef_button.Location = new System.Drawing.Point(261, 204);
+            this.generate_clips_coef_button.Name = "generate_clips_coef_button";
+            this.generate_clips_coef_button.Size = new System.Drawing.Size(203, 41);
+            this.generate_clips_coef_button.TabIndex = 13;
+            this.generate_clips_coef_button.Text = "Сгенерировать CLIPS файл c коэф. уверенности";
+            this.generate_clips_coef_button.UseVisualStyleBackColor = true;
+            this.generate_clips_coef_button.Click += new System.EventHandler(this.generate_clips_coef_button_Click);
+            // 
+            // run_clips_coef_button
+            // 
+            this.run_clips_coef_button.Enabled = false;
+            this.run_clips_coef_button.Location = new System.Drawing.Point(261, 345);
+            this.run_clips_coef_button.Name = "run_clips_coef_button";
+            this.run_clips_coef_button.Size = new System.Drawing.Size(203, 35);
+            this.run_clips_coef_button.TabIndex = 14;
+            this.run_clips_coef_button.Text = "Вывод через CLIPS с коэф. уверенности";
+            this.run_clips_coef_button.UseVisualStyleBackColor = true;
+            this.run_clips_coef_button.Click += new System.EventHandler(this.run_clips_coef_button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 390);
+            this.Controls.Add(this.run_clips_coef_button);
+            this.Controls.Add(this.generate_clips_coef_button);
+            this.Controls.Add(this.table_coef);
             this.Controls.Add(this.run_clipse_button);
             this.Controls.Add(this.load_clipse_button);
             this.Controls.Add(this.generate_clips_button);
@@ -211,6 +261,9 @@ namespace NewFilms
         private System.Windows.Forms.Button generate_clips_button;
         private System.Windows.Forms.Button load_clipse_button;
         private System.Windows.Forms.Button run_clipse_button;
+        private System.Windows.Forms.TableLayoutPanel table_coef;
+        private System.Windows.Forms.Button generate_clips_coef_button;
+        private System.Windows.Forms.Button run_clips_coef_button;
     }
 }
 

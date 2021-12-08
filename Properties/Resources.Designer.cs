@@ -93,6 +93,45 @@ namespace NewFilms.Properties {
         ///(defrule set-output-and-halt
         ///    (declare  [остаток строки не уместился]&quot;;.
         /// </summary>
+        internal static string CLIPS_coef_init {
+            get {
+                return ResourceManager.GetString("CLIPS_coef_init", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на (deftemplate ioproxy
+        ///    (slot fact-id)
+        ///    (multislot answers)
+        ///    (multislot messages)
+        ///    (slot reaction)
+        ///    (slot value)
+        ///    (slot restore)
+        ///)
+        ///
+        ///
+        ///(deffacts proxy-fact
+        ///    (ioproxy
+        ///        (fact-id 0112)
+        ///        (value none)
+        ///        (messages)
+        ///    )
+        ///)
+        ///
+        ///
+        ///(defrule clear-messages
+        ///    (declare (salience 90))
+        ///    ?clear-msg-flg &lt;- (clearmessage)
+        ///    ?proxy &lt;- (ioproxy)
+        ///    =&gt;
+        ///    (modify ?proxy (messages))
+        ///    (retract ?clear-msg-flg)
+        ///)
+        ///
+        ///
+        ///(defrule set-output-and-halt
+        ///    (declare  [остаток строки не уместился]&quot;;.
+        /// </summary>
         internal static string CLIPS_init {
             get {
                 return ResourceManager.GetString("CLIPS_init", resourceCulture);
