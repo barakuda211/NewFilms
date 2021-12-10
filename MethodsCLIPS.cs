@@ -293,6 +293,21 @@ namespace NewFilms
             return (0.9, $"(* 0.9 {ParseFactWeight(from_first[0])} {ParseFactWeight(from_first[1])} {ParseFactWeight(from_first[2])} {ParseFactWeight(from_first[3])})");
         }
 
+        private static string GetSalience(string[] from)
+        {
+            var from_first = from.Select(x => x.Split(new char[] { ' ', '-' })[0]).ToArray();
+            var w = 0.0; var s = "";
+            if (from_first.Length == 1)
+            {
+                return "(declare (salience 95))";
+            }
+            if (from_first.Length == 3)
+            {
+               return "(declare (salience 97))";
+            }
+            return "(declare (salience 97))";
+        }
+
         public static void MakeCLIPSFile(Dictionary<int, string> facts, MultiDictionary rules, string filename = "genearted_clips.clp")
         {
             var sb = new StringBuilder(Properties.Resources.CLIPS_init);
@@ -351,6 +366,7 @@ namespace NewFilms
                 {
                     sb.Append($"(defrule rule{rule_number++}\n");
                     var s = "";
+                    //бавsb.Append(GetSalience(from_set.Select(x => facts[x]).ToArray()));
                     foreach (var from in from_set)
                     {
                         s += facts[from] + $"(\"{ParseFactWeight(facts[from])}\"), ";

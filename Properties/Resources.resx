@@ -188,60 +188,178 @@
     (retract ?current-message)
 )
 
+
 (deftemplate film
 (slot data)
 (slot weight)
 ) 
+
+(defrule merge_films
+	(declare (salience 98))
+	?n1&lt;-(film (data ?name1) (weight ?w1))
+	?n2&lt;-(film (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
 
 (deftemplate time_space
 (slot data)
 (slot weight)
 ) 
 
+(defrule merge_time_space
+	(declare (salience 98))
+	?n1&lt;-(time_space (data ?name1) (weight ?w1))
+	?n2&lt;-(time_space (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
+
 (deftemplate director
 (slot data)
 (slot weight)
 ) 
+
+(defrule merge_directors
+	(declare (salience 98))
+	?n1&lt;-(director (data ?name1) (weight ?w1))
+	?n2&lt;-(director (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
 
 (deftemplate genre
 (slot data)
 (slot weight)
 ) 
 
+(defrule merge_directors
+	(declare (salience 98))
+	?n1&lt;-(genre (data ?name1) (weight ?w1))
+	?n2&lt;-(genre (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
+
 (deftemplate rating
 (slot data)
 (slot weight)
 ) 
+
+(defrule merge_rating
+	(declare (salience 98))
+	?n1&lt;-(rating (data ?name1) (weight ?w1))
+	?n2&lt;-(rating (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
 
 (deftemplate gender
 (slot data)
 (slot weight)
 ) 
 
-(deftemplate oscar
-(slot data)
-(slot weight)
-) 
+(defrule merge_gender
+	(declare (salience 98))
+	?n1&lt;-(gender (data ?name1) (weight ?w1))
+	?n2&lt;-(gender (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
+
 
 (deftemplate oscar
 (slot data)
 (slot weight)
 ) 
+
+(defrule merge_oscar
+	(declare (salience 98))
+	?n1&lt;-(oscar (data ?name1) (weight ?w1))
+	?n2&lt;-(oscar (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
 
 (deftemplate age
 (slot data)
 (slot weight)
 ) 
 
+(defrule merge_age
+	(declare (salience 98))
+	?n1&lt;-(age (data ?name1) (weight ?w1))
+	?n2&lt;-(age (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
+
 (deftemplate mood
 (slot data)
 (slot weight)
 ) 
 
+(defrule merge_mood
+	(declare (salience 98))
+	?n1&lt;-(mood (data ?name1) (weight ?w1))
+	?n2&lt;-(mood (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
+
 (deftemplate composer
 (slot data)
 (slot weight)
-)</value>
+)
+
+(defrule merge_composer
+	(declare (salience 98))
+	?n1&lt;-(composer (data ?name1) (weight ?w1))
+	?n2&lt;-(composer (data ?name2) (weight ?w2))
+	(test (= 0 (str-compare ?name1 ?name2)))
+	(test (&lt;&gt; ?w1 ?w2))
+	=&gt;
+	(modify ?n1 (weight (* (+ ?w1 ?w2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?name1" (" ?w1 ", " ?w2 ") =&gt; " (* (+ ?w1 ?w2) 0.5))))
+)
+</value>
   </data>
   <data name="CLIPS_init" xml:space="preserve">
     <value>(deftemplate ioproxy
@@ -356,6 +474,7 @@
 
 (deftemplate composer
 (slot data)
-)</value>
+)
+</value>
   </data>
 </root>
